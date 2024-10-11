@@ -221,25 +221,24 @@ class DatabaseBuilder(Builder):
         if not self.is_valid_url(git_url):
             raise BuildError(f"Malformed {database_name} URL: {git_url}")
 
-        breakpoint()
-        retrieve(git_url, self.build_dir / database_name, branch=branch, depth=1)
-        # build Redis
-        build_cmd = [
-            self.binary_path("make"),
-            "-j",
-            str(self.jobs),
-            f"MALLOC={self.malloc}",
-        ]
-        self.run_command(build_cmd, cwd=str(database_build_path))
+        # retrieve(git_url, self.build_dir / database_name, branch=branch, depth=1)
+        # # build Redis
+        # build_cmd = [
+        #     self.binary_path("make"),
+        #     "-j",
+        #     str(self.jobs),
+        #     f"MALLOC={self.malloc}",
+        # ]
+        # self.run_command(build_cmd, cwd=str(database_build_path))
 
         # move redis binaries to smartsim/smartsim/_core/bin
-        database_src_dir = database_build_path / "src"
-        server_source = database_src_dir / (database_name.lower() + "-server")
-        server_destination = self.bin_path / (database_name.lower() + "-server")
-        cli_source = database_src_dir / (database_name.lower() + "-cli")
-        cli_destination = self.bin_path / (database_name.lower() + "-cli")
-        self.copy_file(server_source, server_destination, set_exe=True)
-        self.copy_file(cli_source, cli_destination, set_exe=True)
+        # database_src_dir = database_build_path / "src"
+        # server_source = database_src_dir / (database_name.lower() + "-server")
+        # server_destination = self.bin_path / (database_name.lower() + "-server")
+        # cli_source = database_src_dir / (database_name.lower() + "-cli")
+        # cli_destination = self.bin_path / (database_name.lower() + "-cli")
+        # self.copy_file(server_source, server_destination, set_exe=True)
+        # self.copy_file(cli_source, cli_destination, set_exe=True)
 
         # validate install -- redis-server
         core_path = Path(os.path.abspath(__file__)).parent.parent
