@@ -221,6 +221,7 @@ class DatabaseBuilder(Builder):
         if not self.is_valid_url(git_url):
             raise BuildError(f"Malformed {database_name} URL: {git_url}")
 
+        breakpoint()
         retrieve(git_url, self.build_dir / database_name, branch=branch, depth=1)
         # build Redis
         build_cmd = [
