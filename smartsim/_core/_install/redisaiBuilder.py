@@ -147,7 +147,7 @@ class RedisAIBuilder:
         self.package_path.mkdir(parents=True)
 
         breakpoint()
-        # TODO: git clone to src_path on FE
+        print("git clone RedisAI to: " + self.src_path)
         # retrieve(self.source, self.src_path, depth=1, branch=self.version)
 
         self._prepare_packages()

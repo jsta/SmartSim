@@ -96,6 +96,8 @@ class MLPackage:
             if quiet:
                 install_command += ["--quiet", "--no-warn-conflicts"]
             install_command += self.python_packages
+            breakpoint()
+            print(install_command)
             subprocess.check_call(install_command)
 
 
