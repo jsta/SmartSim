@@ -308,7 +308,6 @@ def execute(
     # REDIS/KeyDB
     build_database(build_env, versions, keydb, verbose)
 
-    breakpoint()
     print(CONFIG.lib_path)
     if (CONFIG.lib_path / "redisai.so").exists():
         logger.warning("RedisAI was previously built, run 'smart clean' to rebuild")
